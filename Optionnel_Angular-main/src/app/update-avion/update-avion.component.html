@@ -1,0 +1,66 @@
+<div class="container">
+  <div>
+    <h2>Modifier un Avion :</h2>
+  </div>
+</div>
+<form>
+  <div class="col-sm-2 col-md-2 col-lg-2">
+    <label>ID Avion</label>
+    <input
+      readonly
+      type="text"
+      [(ngModel)]="currentAvion.idAvion"
+      name="idAvion"
+      class="form-control"
+    />
+  </div>
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <label>Matricule Avion</label>
+    <input
+      type="text"
+      [(ngModel)]="currentAvion.matriculeAvion"
+      name="matriculeAvion"
+      class="form-control"
+    />
+  </div>
+  <div class="col-sm-2 col-md-2 col-lg-2">
+    <label>Kilometrage Avion</label>
+    <input
+      type="number"
+      [(ngModel)]="currentAvion.celometrageAvion"
+      name="celometrageAvion"
+      class="form-control"
+    />
+  </div>
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <label>Date fabrication</label>
+    <input
+      type="date"
+      [ngModel]="currentAvion.dateFabrication | date : 'yyyy-MM-dd'"
+      (ngModelChange)="currentAvion.dateFabrication = $event"
+      name="dateFabrication"
+      class="form-control"
+    />
+  </div>
+
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <label>Type</label>
+
+    <select
+      class="form-control form-control-lg"
+      id="idAv"
+      name="idAv"
+      [(ngModel)]="updatedTypId"
+    >
+      <option *ngFor="let typ of types" [value]="typ.idAv">
+        {{ typ.matriculeAv }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mt-2">
+    <button type="submit" (click)="updateAvion()" class="btn btn-success">
+      Modifier
+    </button>
+  </div>
+</form>

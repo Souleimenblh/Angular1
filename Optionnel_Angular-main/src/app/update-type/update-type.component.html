@@ -1,0 +1,32 @@
+<form>
+  <div [hidden]="ajout">
+    <label>ID type</label>
+    <input
+      type="text"
+      [readOnly]="!ajout"
+      [(ngModel)]="type.idAv"
+      name="idtype"
+      class="form-control w-25"
+    />
+  </div>
+  <div>
+    <label>Nom type</label>
+    <input
+      type="text"
+      [(ngModel)]="type.matriculeAv"
+      name="matriculetype"
+      class="form-control"
+      placeholder="Entrez un nom de type..."
+    />
+  </div>
+  <div class="mt-2">
+    <button
+      type="submit"
+      [disabled]="!type.matriculeAv"
+      class="btn btn-success"
+      (click)="saveType()"
+    >
+      {{ ajout ? "Ajouter" : "Modifier" }}
+    </button>
+  </div>
+</form>

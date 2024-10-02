@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Avions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #343a40;
+      padding: 10px 20px;
+      color: white;
+    }
+
+    .navbar-brand {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+    }
+
+    .navbar a {
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: red;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .nav-item {
+      margin-right: 20px;
+    }
+
+    .navbar-right {
+      margin-left: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">Gestion Avions</div>
+    <ul class="navbar-left">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/avions">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <button class="dropbtn">Avions <i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
+          <a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-avion">Ajouter</a>
+          <a class="dropdown-item" routerLink="/avions">Lister</a>
+          <a class="dropdown-item" routerLink="/rechercheParTypeAv">Recherche Par type Avion</a>
+          <a class="dropdown-item" routerLink="/rechercheParMatricule">Recherche Par Matricule</a>
+          <a class="dropdown-item" routerLink="/listeTypes">Gestion des types</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-right">
+      <li>
+        <a class="nav-link">{{ authService.loggedUser }}</a>
+      </li>
+      <li class="nav-item dropdown">
+        <button class="dropbtn">Connexion <i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
+          <a *ngIf="!authService.isloggedIn" class="dropdown-item" routerLink="login">Login</a>
+          <a *ngIf="authService.isloggedIn" class="dropdown-item" (click)="onLogout()">Logout</a>
+          <a class="dropdown-item" href="#">Profile</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <router-outlet></router-outlet>
+</body>
+
+</html>

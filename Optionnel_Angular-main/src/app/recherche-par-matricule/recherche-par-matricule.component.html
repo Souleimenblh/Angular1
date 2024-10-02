@@ -1,0 +1,71 @@
+<div class="container">
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Matricule avion en tapant</label>
+      <input
+        #matricule
+        [(ngModel)]="searchTerm"
+        name="searchTerm"
+        class="form-control"
+      />
+    </div>
+  </form>
+
+  <!-- <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Matricule Avion en tapant</label>
+      <input
+        class="form-control"
+        #searchTerm
+        (keyup)="onKeyUp(searchTerm.value)"
+      />
+    </div>
+  </form> -->
+
+  <!-- <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Matricule Avion</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="matriculeAvion"
+        name="matriculeAvion"
+        class="form-control"
+      />
+      <button
+        type="submit"
+        (click)="rechercherAvios()"
+        class="btn btn-primary mb-2 ml-2"
+      >
+        Rechercher
+      </button>
+    </div>
+  </form> -->
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Matricule Avion</th>
+            <th>kilometrage Avion</th>
+            <th>Date fabrication</th>
+            <th>Type</th>
+            <!-- <th>Supprimer</th>
+            <th>Modifier</th> -->
+          </tr>
+        </thead>
+        <tbody *ngFor="let avion of avions | searchFilter : searchTerm">
+          <tr>
+            <td>{{ avion.idAvion }}</td>
+            <td>{{ avion.matriculeAvion }}</td>
+            <td>{{ avion.celometrageAvion }}</td>
+            <td>{{ avion.dateFabrication | date : "dd/MM/yyyy" }}</td>
+            <td>{{ avion.typeAv.matriculeAv }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

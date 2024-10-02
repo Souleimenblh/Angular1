@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Matricule Avion</th>
+            <th>kilometrage Avion</th>
+            <th>Date fabrication</th>
+            <th>Type</th>
+            <th *ngIf="authService.isAdmin()">Supprimer</th>
+            <th *ngIf="authService.isAdmin()">Modifier</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let avion of avions">
+          <tr>
+            <td>{{ avion.idAvion }}</td>
+            <td>{{ avion.matriculeAvion }}</td>
+            <td>{{ avion.celometrageAvion }}</td>
+            <td>{{ avion.dateFabrication | date : "dd/MM/yyyy" }}</td>
+            <td>{{ avion.typeAv.matriculeAv }}</td>
+
+            <td>
+              <a
+                *ngIf="authService.isAdmin()"
+                class="btn btn-danger"
+                (click)="supprimerAvion(avion)"
+                >Supprimer</a
+              >
+            </td>
+            <td>
+              <a
+                *ngIf="authService.isAdmin()"
+                class="btn btn-info"
+                [routerLink]="['/updateAvion', avion.idAvion]"
+                >Modifier</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
